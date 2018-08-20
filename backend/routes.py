@@ -1,12 +1,16 @@
+from flask import render_template, url_for, redirect, request
 from backend import app
 from backend.key import YELP_API_KEY
 from pdb import set_trace as bp
 # uncomplete library
 # from yelp.client import Client
-from flask import request
 import json
 import requests
 
+
+@app.route('/')
+def home():
+	return render_template('index.html')
 
 @app.route('/api/opentable')
 def opentable():
@@ -19,7 +23,7 @@ def yelp():
 	# business_response = client.business.get_by_id('yelp-san-francisco')
 	# print business_response.json()
 	# response = client.business.get_by_location('94404')
-	api_url_base = 'https://api.yelp.com/v3/businesses/search?term=restaurant&'
+	api_url_base = 'https://api.yelp.com/v3/businesses/search?term=restaurant&attributes=reservation&'
 	location = request.args.get('location')
 	url = api_url_base + 'location=' + location
 	headers = {

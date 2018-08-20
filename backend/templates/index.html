@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reservation</title>
+	
+	<!-- <script type="text/javascript" src='./backend/javascript/opentable.js'></script> -->
+	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<style type="text/css" src="{{url_for('static', filename='style.css')}}"></style>
+</head>
+<body>
+	<div id='yelp'>
+		<form>
+			<input placeholder='input zipcode to get restaurant list'></input>
+			<input type="submit" value='Submit'>
+		</form>
+		<div className='restaurant-list'>
+			
+		</div>
+	</div>
+	<script type="text/javascript" src="{{url_for('static', filename='yelp.js')}}"></script>
+</body>
+</html>
