@@ -1,1 +1,6 @@
-./key
+backend/key.py
+
+node_modules/
+tmp/
+log/
+.sass-cache/

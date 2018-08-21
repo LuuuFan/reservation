@@ -1,11 +1,12 @@
 $(document).ready(() => {
 	const today = new Date().toISOString().split('T')[0];
-	const dateInput = $('#reservation input');
+	const dateInput = $('#date');
 	dateInput.val(today);
 	dateInput.attr('min', today);
 });
 
 let selected = '';
+let restaurant = {};
 
 const getRestaurantFromYelp = (zipcode) => {
 	$.ajax({
@@ -41,36 +42,56 @@ const renderRestaurant = (businesses) => {
 		// $('.restaurant-list').append(link);
 		$('.restaurant-list').append(bizDiv);
 		$(bizDiv).on('click', (e) => {
+			if ($('.selected')) $('.selected').removeClass('selected');
+			$(e.currentTarget).addClass('selected');
 			selected = e.currentTarget.dataset.id;
 			getRestaurantInfo(selected);
 		})
 	})
 }
 
-const renderTimeSelection = (selected) => {
-
-};
-
 const getRestaurantInfo = (selected) => {
 	$.ajax({
 		url: `/api/yelp/biz?id=${selected}`,
 	}).done(res => {
-		const restaurant = JSON.parse(res);
-		console.log(restaurant);
-		const date = restaurant.hours[0].open;
-		const time = date.filter(d => d.day === new Date().getDay() - 1);
-		if (time.length) {
-			debugger
-		}
-		// disable closed day
-		// $('#reservation input').datepicker({
-		// 	// beforeShowDay: (date) => {
-		// 	// 	// const str = jQuery.datepicker.formateDate('yy-mm-dd', date);
-		// 	// }
-		// })
-
+		restaurant = JSON.parse(res);
+		renderTimeSelection(getTime());
 	}).fail(err => {
 		console.log(err);
+	})
+};
+
+const getTime = () => {
+	const openDates = restaurant.hours[0].open;
+	const day = new Date($('#reservation input[type="date"]').val()).getDay();
+	const time = openDates.filter(d => d.day === new Date().getDay() - 1);
+	const arr = [];
+	if (time.length) {
+		time.forEach(t => {
+			arr.push(t.start);
+			while(arr[arr.length - 1] !== t.end){
+				const lastEl = arr[arr.length - 1];
+				const hour = lastEl.slice(0, 2) * 1;
+				lastEl.slice(2) === '00' ? arr.push(`${hour < 10 ? `0${hour}` : hour}30`) : arr.push(`${hour + 1 < 10 ? `0${hour + 1}` : hour + 1}00`)
+			}
+		});
+	}
+	return arr;
+	// disable closed day
+	// $('#reservation input').datepicker({
+	// 	// beforeShowDay: (date) => {
+	// 	// 	// const str = jQuery.datepicker.formateDate('yy-mm-dd', date);
+	// 	// }
+	// })
+}
+
+
+const renderTimeSelection = (arr) => {
+	arr.forEach(t => {
+		const option = document.createElement('option');
+		$(option).attr('value', t);
+		option.innerHTML = `${t.slice(0, 2) > 12 ? t.slice(0, 2) * 1 - 12 : t.slice(0, 2) * 1}: ${t.slice(2)} ${t.slice(0, 2) >= 12 ? 'pm' : 'am'}`;
+		$('#reservation #time').append(option);		
 	})
 };
 
@@ -91,7 +112,14 @@ $('#yelp form').submit((e) => {
 
 $('#reservation form').submit((e) => {
 	e.preventDefault();
-	debugger
+	findTable(restaurant.alias, $('#date').val(), $('#time').val(), $('#covers').val())
 })
 
+const findTable = (alias, date, time, covers) => {
+	$.ajax({
+		url: `/api/yelp/book?alias=${alias}&date=${date}&time=${time}&covers=${covers}`
+	}).done((res)=>{
+		debugger
+	}).fail(err => {console.log(err)})
+}
 

@@ -48,3 +48,18 @@ def biz():
 	else:
 		return 'something wrong'
 		
+
+@app.route('/api/yelp/book')
+def book():
+	api_url_base = 'https://www.yelp.com/reservations/'
+	alias = request.args.get('alias')
+	date = request.args.get('date')
+	time = request.args.get('time')
+	covers = request.args.get('covers')
+	url = '{}{}?date={}&time={}&covers={}&source=yelp_biz'.format(api_url_base, alias, date, time, covers)
+	print(url)
+	response = requests.get(url)
+	if response.status_code == 200:
+		return 'success'
+	else:
+		return 'failed'
