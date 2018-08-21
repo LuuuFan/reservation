@@ -4,19 +4,49 @@
 	<title>Reservation</title>
 	
 	<!-- <script type="text/javascript" src='./backend/javascript/opentable.js'></script> -->
-	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-	<style type="text/css" src="{{url_for('static', filename='style.css')}}"></style>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+	<!-- <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script> -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{url_for('static', filename='stylesheets/style.css')}}"></link>
 </head>
 <body>
 	<div id='yelp'>
 		<form>
-			<input placeholder='input zipcode to get restaurant list'></input>
+			<input type='text' placeholder='input zipcode to get restaurant list'></input>
 			<input type="submit" value='Submit'>
 		</form>
-		<div className='restaurant-list'>
-			
+		<div class='restaurant-list'>
 		</div>
 	</div>
-	<script type="text/javascript" src="{{url_for('static', filename='yelp.js')}}"></script>
+	<div id='reservation'>
+		<h3>Make a Reservation</h3>
+		<form>
+			<div class='form-inline'>
+				<i class="fas fa-calendar-alt"></i>
+				<input type='date' id='date'></input>
+				<!-- <input id='date'></input> -->
+			</div>
+			<div class='form-inline'>
+				<i class="fas fa-clock"></i>
+				<select id='time'></select>
+			</div>
+			<div class='form-inline'>
+				<i class="fas fa-user-friends"></i>
+				<select id='cover'>
+					<option value='1'>1 person</option>
+					<option value='2'>2 people</option>
+					<option value='3'>3 people</option>
+					<option value='4'>4 people</option>
+					<option value='5'>5 people</option>
+					<option value='6'>6 people</option>
+				</select>
+			</div>
+			<input type="submit" value='Find a Table' name="">
+		</form>
+	</div>
+	<script type="text/javascript" src="{{url_for('static', filename='javascript/yelp.js')}}"></script>
 </body>
 </html>

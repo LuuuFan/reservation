@@ -8,6 +8,11 @@ import json
 import requests
 
 
+headers = {
+	'Content-Type': 'application/json',
+	'Authorization': 'Bearer %s' % YELP_API_KEY,
+}
+
 @app.route('/')
 def home():
 	return render_template('index.html')
@@ -26,12 +31,20 @@ def yelp():
 	api_url_base = 'https://api.yelp.com/v3/businesses/search?term=restaurant&attributes=reservation&'
 	location = request.args.get('location')
 	url = api_url_base + 'location=' + location
-	headers = {
-		'Content-Type': 'application/json',
-		'Authorization': 'Bearer %s' % YELP_API_KEY,
-	}
 	response = requests.get(url, headers=headers)
 	if response.status_code == 200:
 		return response.content, 200
 	else:
 		return {'error': 'Cannot get restaurant information, try again later'}
+
+@app.route('/api/yelp/biz')
+def biz():
+	api_url_base = 'https://api.yelp.com/v3/businesses/'
+	id = request.args.get('id')
+	url = api_url_base + id
+	response = requests.get(url, headers=headers)
+	if response.status_code == 200:
+		return response.content, 200
+	else:
+		return 'something wrong'
+		
