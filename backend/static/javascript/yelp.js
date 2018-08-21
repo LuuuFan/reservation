@@ -113,6 +113,7 @@ $('#yelp form').submit((e) => {
 
 $('#reservation form').submit((e) => {
 	e.preventDefault();
+	// get content from yelp tried to get available time slot, failed;
 	// findTable(restaurant.alias, $('#date').val(), $('#time').val(), $('#covers').val())
 	const url = `https://www.yelp.com/reservations/${restaurant.alias}?date=${$('#date').val()}&time=${$('#time').val()}&covers=${$('#covers').val()}&source=yelp_biz`
 	const win = window.open(url, '_blank');
