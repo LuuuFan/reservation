@@ -87,6 +87,7 @@ const getTime = () => {
 
 
 const renderTimeSelection = (arr) => {
+	$('#time').empty();
 	arr.forEach(t => {
 		const option = document.createElement('option');
 		$(option).attr('value', t);
@@ -112,7 +113,10 @@ $('#yelp form').submit((e) => {
 
 $('#reservation form').submit((e) => {
 	e.preventDefault();
-	findTable(restaurant.alias, $('#date').val(), $('#time').val(), $('#covers').val())
+	// findTable(restaurant.alias, $('#date').val(), $('#time').val(), $('#covers').val())
+	const url = `https://www.yelp.com/reservations/${restaurant.alias}?date=${$('#date').val()}&time=${$('#time').val()}&covers=${$('#covers').val()}&source=yelp_biz`
+	const win = window.open(url, '_blank');
+	win.focus();
 })
 
 const findTable = (alias, date, time, covers) => {

@@ -60,6 +60,6 @@ def book():
 	print(url)
 	response = requests.get(url)
 	if response.status_code == 200:
-		return 'success'
+		return response.content, 200
 	else:
 		return 'failed'

@@ -15,17 +15,14 @@ span, article, footer, time, small {
   vertical-align: inherit;
   box-sizing: inherit;
   background: transparent;
-  font-family: "Robot", sans-serif;
-}
+  font-family: 'Robot', sans-serif; }
 
 ul, ol {
-  list-style: none;
-}
+  list-style: none; }
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: lightgray;
-}
+  color: lightgray; }
 
 label {
   -webkit-touch-callout: none;
@@ -33,25 +30,22 @@ label {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
-}
+  user-select: none; }
 
 img {
   display: block;
   width: 100%;
-  height: auto;
-}
+  height: auto; }
 
-input[type=password],
-input[type=email],
-input[type=text] {
-  padding: 5px 10px;
-}
+input[type="password"],
+input[type="email"],
+input[type="text"] {
+  padding: 5px 10px; }
 
-input[type=password],
-input[type=email],
-input[type=text],
-input[type=submit],
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
 textarea,
 button {
   /*
@@ -59,86 +53,74 @@ button {
   http://css-tricks.com/almanac/properties/a/appearance/
   */
   -webkit-appearance: none;
-  -moz-appearance: none;
-}
+  -moz-appearance: none; }
 
 button,
-input[type=submit] {
-  cursor: pointer;
-}
+input[type="submit"] {
+  cursor: pointer; }
 
 /* Clearfix */
 .group::after {
   content: "";
   display: block;
-  clear: both;
-}
+  clear: both; }
 
 body {
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 input {
   padding: 15px;
   border-radius: 5px;
-  border: 1px solid lightgray;
-}
+  border: 1px solid lightgray; }
 
-input[type=submit] {
+input[type='submit'] {
   background-color: black;
-  color: white;
-}
+  color: white; }
 
-input[type=submit]:hover {
-  background-color: gray;
-}
+input[type='submit']:hover {
+  background-color: gray; }
 
 .alert {
   padding: 5px 10px;
   background: rgba(255, 0, 0, 0.2);
-  border-radius: 5px;
-}
+  border-radius: 5px; }
 
 #yelp {
   width: 50%;
-  margin: 30px auto;
-}
-#yelp form {
-  width: 100%;
-  display: flex;
-  margin-bottom: 15px;
-}
-#yelp form input[type=text] {
-  flex: 1;
-  margin-right: 15px;
-}
+  margin: 30px auto; }
+  #yelp form {
+    width: 100%;
+    display: flex;
+    margin-bottom: 15px; }
+    #yelp form input[type='text'] {
+      flex: 1;
+      margin-right: 15px; }
+
+.selected {
+  color: red;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2); }
 
 .biz-individual {
   display: flex;
   cursor: pointer;
   align-items: center;
   margin-bottom: 10px;
-  border-radius: 5px;
-}
-.biz-individual .img-container {
-  height: 50px;
-  width: 50px;
-  border-radius: 5px;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  margin-right: 20px;
-}
-.biz-individual .img-container img {
-  height: 100%;
-  object-fit: cover;
-}
-.biz-individual .img-container:hover {
-  opacity: 0.5;
-}
+  border-radius: 5px; }
+  .biz-individual .img-container {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-right: 20px; }
+    .biz-individual .img-container img {
+      height: 100%;
+      object-fit: cover; }
+  .biz-individual .img-container:hover {
+    opacity: 0.5; }
 
 .biz-individual:hover {
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-}
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2); }
 
 #reservation {
   position: fixed;
@@ -148,34 +130,27 @@ input[type=submit]:hover {
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-  width: 20%;
-}
-#reservation h3 {
-  font-weight: bold;
-  font-size: 18px;
-  border-bottom: 10px;
-}
-#reservation form .form-inline {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-#reservation form .form-inline i {
-  margin-right: 7px;
-}
-#reservation form .form-inline select {
-  flex: 1;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid lightgray;
-}
-#reservation form .form-inline input {
-  padding: 5px 10px;
-  flex: 1;
-}
-#reservation form .form-inline input[type=submit] {
-  padding: 6px;
-  margin: auto;
-}
+  width: 20%; }
+  #reservation h3 {
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 10px; }
+  #reservation form .form-inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; }
+    #reservation form .form-inline i {
+      margin-right: 7px; }
+    #reservation form .form-inline select {
+      flex: 1;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid lightgray; }
+    #reservation form .form-inline input {
+      padding: 5px 10px;
+      flex: 1; }
+    #reservation form .form-inline input[type='submit'] {
+      padding: 6px;
+      margin: auto; }
 
 /*# sourceMappingURL=style.css.map */
