@@ -158,7 +158,7 @@ input[type=submit]:hover {
 #reservation h3 {
   font-weight: bold;
   font-size: 18px;
-  border-bottom: 10px;
+  border-bottom: 15px;
 }
 #reservation form .form-inline {
   display: flex;
@@ -181,6 +181,18 @@ input[type=submit]:hover {
 #reservation form .form-inline input[type=submit] {
   padding: 6px;
   margin: auto;
+}
+#reservation form .form-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+#reservation form .form-footer span {
+  font-size: 10px;
+}
+#reservation form .form-footer span i {
+  color: red;
+  margin-right: 7px;
 }
 
 /*# sourceMappingURL=style.css.map */

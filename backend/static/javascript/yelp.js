@@ -123,7 +123,15 @@ const findTable = (alias, date, time, covers) => {
 	$.ajax({
 		url: `/api/yelp/book?alias=${alias}&date=${date}&time=${time}&covers=${covers}`
 	}).done((res)=>{
-		debugger
+		const html = document.createElement('html');
+		html.innerHTML = res;
+		const body = html.querySelector('body')
+		html.onload = () => {
+			debugger
+		}
+		body.onload = () => {
+			debugger
+		}
 	}).fail(err => {console.log(err)})
 }
 

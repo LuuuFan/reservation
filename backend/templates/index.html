@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Reservation</title>
-	
+	<link rel="icon" type='image/png' href="{{url_for('static', filename='images/booking.png')}}">
 	<!-- <script type="text/javascript" src='./backend/javascript/opentable.js'></script> -->
 	<script
   src="https://code.jquery.com/jquery-3.3.1.js"
@@ -44,7 +44,11 @@
 					<option value='6'>6 people</option>
 				</select>
 			</div>
-			<input type="submit" value='Find a Table' name="">
+			<div class='form-footer'>
+				<input type="submit" value='Find a Table' name="">
+				<span><i class="fab fa-yelp"></i>Power by Yelp</span>
+			</div>
+
 		</form>
 	</div>
 	<script type="text/javascript" src="{{url_for('static', filename='javascript/yelp.js')}}"></script>

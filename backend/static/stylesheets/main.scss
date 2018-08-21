@@ -82,7 +82,7 @@ input[type='submit']:hover{
   h3{
     font-weight: bold;
     font-size: 18px;
-    border-bottom: 10px;
+    border-bottom: 15px;
   }
   form{
     .form-inline{
@@ -107,6 +107,18 @@ input[type='submit']:hover{
         margin: auto;
       }
     }
+    .form-footer{
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        span{
+          i{
+            color: red;
+            margin-right: 7px;
+          }
+          font-size: 10px;
+        }
+      }
   }
 }
 
