@@ -127,3 +127,7 @@ const findTable = (alias, date, time, covers) => {
 	}).fail(err => {console.log(err)})
 }
 
+
+$('#date').on('change', (e)=>{
+	renderTimeSelection(getTime());
+})
