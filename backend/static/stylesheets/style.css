@@ -195,4 +195,37 @@ input[type=submit]:hover {
   margin-right: 7px;
 }
 
+.stripe {
+  position: fixed;
+  right: 0;
+  top: 450px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+  width: 20%;
+}
+.stripe button {
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  background-color: black;
+  color: white;
+}
+.stripe button:hover {
+  background-color: gray;
+}
+.stripe #card-element {
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  margin: 10px 0;
+}
+
+.stripe-widget {
+  position: fixed;
+  right: 50px;
+  top: 650px;
+}
+
 /*# sourceMappingURL=style.css.map */

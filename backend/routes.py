@@ -63,3 +63,8 @@ def book():
 		return response.content, 200
 	else:
 		return 'failed'
+
+@app.route('/api/stripe/pay')
+def pay():
+	
+	return 'testing'

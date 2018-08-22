@@ -85,7 +85,6 @@ const getTime = () => {
 	// })
 }
 
-
 const renderTimeSelection = (arr) => {
 	$('#time').empty();
 	arr.forEach(t => {
@@ -135,7 +134,6 @@ const findTable = (alias, date, time, covers) => {
 		}
 	}).fail(err => {console.log(err)})
 }
-
 
 $('#date').on('change', (e)=>{
 	renderTimeSelection(getTime());
