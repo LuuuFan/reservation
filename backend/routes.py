@@ -1,17 +1,19 @@
 from flask import render_template, url_for, redirect, request
 from backend import app
-from backend.key import YELP_API_KEY
+from backend.key import YELP_API_KEY, STRIPE_API_KEY, STRIPE_SECRET_KEY
 from pdb import set_trace as bp
 # uncomplete library
 # from yelp.client import Client
 import json
 import requests
-
+import stripe
 
 headers = {
 	'Content-Type': 'application/json',
 	'Authorization': 'Bearer %s' % YELP_API_KEY,
 }
+
+stripe.api_key = STRIPE_SECRET_KEY
 
 @app.route('/')
 def home():
@@ -57,14 +59,33 @@ def book():
 	time = request.args.get('time')
 	covers = request.args.get('covers')
 	url = '{}{}?date={}&time={}&covers={}&source=yelp_biz'.format(api_url_base, alias, date, time, covers)
-	print(url)
+	# print(url)
 	response = requests.get(url)
 	if response.status_code == 200:
 		return response.content, 200
 	else:
 		return 'failed'
 
-@app.route('/api/stripe/pay')
+@app.route('/api/stripe/pay', methods=['GET', 'POST'])
 def pay():
-	
-	return 'testing'
+	if request.method == 'POST':
+		data = request.get_json()
+		token = data['token']
+		amount = data['amount']
+
+		charge = stripe.Charge.create(
+			amount = int(amount * 100),
+			currency = 'usd',
+			description = 'Test charge',
+			source = token,
+			statement_descriptor = 'Customize description',
+			metadata = {'order_id': 1234},
+		)
+
+		# should get charge info back
+		if True:
+			return 'success', 200
+		else:
+			return {'error', 'payment failed'}, 418  
+	else:
+		return 'testing get api call'

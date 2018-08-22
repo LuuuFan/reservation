@@ -11,7 +11,7 @@ const style = {
     lineHeight: '18px',
     fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
     fontSmoothing: 'antialiased',
-    fontSize: '16px',
+    fontSize: '14px',
     '::placeholder': {
       color: '#aab7c4'
     }
@@ -26,7 +26,7 @@ const card = elements.create('card', {style: style});
 card.mount('#card-element');
 
 // Handle real-time validation errors from the card Element.
-card.addEventListener('change', function(event) {
+card.addEventListener('change', (event) => {
   const displayError = document.getElementById('card-errors');
   if (event.error) {
     displayError.textContent = event.error.message;
@@ -37,10 +37,10 @@ card.addEventListener('change', function(event) {
 
 // Handle form submission.
 const form = document.getElementById('payment-form');
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  stripe.createToken(card).then(function(result) {
+  stripe.createToken(card).then((result)=>  {
     if (result.error) {
       // Inform the user if there was an error.
       const errorElement = document.getElementById('card-errors');
@@ -58,8 +58,25 @@ const stripeTokenHandler = (token) => {
   hiddenInput.setAttribute('name', 'stripeToken');
   hiddenInput.setAttribute('value', token.id);
   form.appendChild(hiddenInput);
-
+  const amount = document.querySelector('.amount strong').textContent * 1;
+  const data = {
+  	amount: amount,
+  	token: token.id,
+  }
   // Submit the form
-  debugger
-  form.submit();
+  submitPayment(data)
+  	.then(res => {
+  		debugger
+  	}).catch(err=>{
+  		debugger
+  	})
 }
+
+const submitPayment = (data) => (
+	$.ajax({
+		url: '/api/stripe/pay',
+		method: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify(data),
+	})
+);

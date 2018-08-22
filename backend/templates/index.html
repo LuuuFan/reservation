@@ -52,6 +52,10 @@
 		</form>
 	</div>
 	<div class='stripe'>
+		<div class='amount'>
+			<label>Amount: </label>
+			$<strong>0.5</strong>
+		</div>
 		<form id='payment-form'>
 			<div class='form-inline'>
 				<label for='card-element'>Credit or debit card</label>
@@ -64,11 +68,11 @@
 		</form>
 	</div>
 	<div class='stripe-widget'>
-		<form action="your-server-side-code" method="POST">
+		<form action="/" method="GET">
 		  <script
 		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 		    data-key="pk_test_ROdkyhs5rFVG8xeBkE0X66QJ"
-		    data-amount="999"
+		    data-amount="50"
 		    data-name="Pay With Stripe"
 		    data-description="Example charge"
 		    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
