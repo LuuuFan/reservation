@@ -52,16 +52,11 @@ const pay = (type, token) => {
 		},
 		data: JSON.stringify(data),
 	}).done(res => {
-		console.log(res.id);
+		console.log(res)
 		const url = res.links[1].href;
-		console.log(url);
 		const win = window.open(url, '_blank');
 		win.focus();
-		getPaymentInfo(res.links[0]).then(res => {
-			debugger
-		}).catch(err => {
-			debugger
-		});
+		getPaymentInfo(res.links[0].href);
 	}).fail(err => {
 		debugger
 	})
@@ -76,3 +71,11 @@ const getPaymentInfo = (url) => (
 		}
 	})
 );
+
+// paymentId=PAY-5K934118SP243731MLN7QYAQ&token=EC-2XH833443V7427748&PayerID=7N7HGTGG45FMY
+
+const executePay = (url) => (
+	$.ajax({
+		url: `${url}`,
+	})
+)
