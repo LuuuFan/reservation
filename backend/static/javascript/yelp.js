@@ -21,33 +21,40 @@ const getRestaurantFromYelp = (zipcode) => {
 
 const renderRestaurant = (businesses) => {
 	$('.restaurant-list').empty();
-	businesses.forEach(biz => {
-		// const link = document.createElement('a');
-		// $(link).attr('href', biz.url);
-		// $(link).attr('target', '_blank');
-		const bizDiv = document.createElement('div');
-		$(bizDiv).addClass('biz-individual');
-		$(bizDiv).attr('data-alias', biz.alias);
-		$(bizDiv).attr('data-id', biz.id);
-		const bizImgContainer = document.createElement('div');
-		$(bizImgContainer).addClass('img-container');
-		const bizImg = document.createElement('img');
-		$(bizImg).attr('src', biz.image_url);
-		$(bizImgContainer).append(bizImg);
-		const bizName = document.createElement('p');
-		bizName.innerHTML = biz.name;
-		$(bizDiv).append(bizImgContainer);
-		$(bizDiv).append(bizName);
-		// $(link).append(bizDiv);
-		// $('.restaurant-list').append(link);
-		$('.restaurant-list').append(bizDiv);
-		$(bizDiv).on('click', (e) => {
-			if ($('.selected')) $('.selected').removeClass('selected');
-			$(e.currentTarget).addClass('selected');
-			selected = e.currentTarget.dataset.id;
-			getRestaurantInfo(selected);
+	if (!businesses.length) {
+		const noResult = document.createElement('div');
+		$(noResult).addClass('alert');
+		noResult.innerHTML = 'No Restaurant take reservation in this area';
+		$('.restaurant-list').append(noResult);
+	} else {
+		businesses.forEach(biz => {
+			// const link = document.createElement('a');
+			// $(link).attr('href', biz.url);
+			// $(link).attr('target', '_blank');
+			const bizDiv = document.createElement('div');
+			$(bizDiv).addClass('biz-individual');
+			$(bizDiv).attr('data-alias', biz.alias);
+			$(bizDiv).attr('data-id', biz.id);
+			const bizImgContainer = document.createElement('div');
+			$(bizImgContainer).addClass('img-container');
+			const bizImg = document.createElement('img');
+			$(bizImg).attr('src', biz.image_url);
+			$(bizImgContainer).append(bizImg);
+			const bizName = document.createElement('p');
+			bizName.innerHTML = biz.name;
+			$(bizDiv).append(bizImgContainer);
+			$(bizDiv).append(bizName);
+			// $(link).append(bizDiv);
+			// $('.restaurant-list').append(link);
+			$('.restaurant-list').append(bizDiv);
+			$(bizDiv).on('click', (e) => {
+				if ($('.selected')) $('.selected').removeClass('selected');
+				$(e.currentTarget).addClass('selected');
+				selected = e.currentTarget.dataset.id;
+				getRestaurantInfo(selected);
+			})
 		})
-	})
+	}
 }
 
 const getRestaurantInfo = (selected) => {
@@ -97,10 +104,10 @@ const renderTimeSelection = (arr) => {
 
 $('#yelp form').submit((e) => {
 	e.preventDefault();
+	$('.alert').remove();
 	const zipcode = $('form input:text').val();
 	const regex = /^\d{5}(?:[-\s]\d{4})?$/;
 	if (regex.test(zipcode)) {
-		$('.alert').remove();
 		getRestaurantFromYelp(zipcode);
 	} else {
 		const alert = document.createElement('div');

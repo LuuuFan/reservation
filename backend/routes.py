@@ -91,7 +91,4 @@ def pay():
 def stripe_widget():
 	token = request.args.get('stripeToken')
 	email = request.args.get('stripeEmail')
-	print '~~~~~~~~~~~~~~~'
-	print token
-	print email
 	return redirect(url_for('home'))
