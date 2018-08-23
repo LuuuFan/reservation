@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request, redirect
 from backend import app
 from backend.key import YELP_API_KEY, STRIPE_API_KEY, STRIPE_SECRET_KEY
 from pdb import set_trace as bp
@@ -80,12 +80,18 @@ def pay():
 			source = token,
 			statement_descriptor = 'Customize description',
 			metadata = {'order_id': 1234},
+			receipt_email = 'angelia.fan@gmail.com',
 		)
 
-		# should get charge info back
-		if True:
-			return 'success', 200
-		else:
-			return {'error', 'payment failed'}, 418  
+		# Stripe is using webhook, need to build another api call for stripe to get information back
 	else:
 		return 'testing get api call'
+
+@app.route('/api/stripe/widget', methods=['GET'])
+def stripe_widget():
+	token = request.args.get('stripeToken')
+	email = request.args.get('stripeEmail')
+	print '~~~~~~~~~~~~~~~'
+	print token
+	print email
+	return redirect(url_for('home'))

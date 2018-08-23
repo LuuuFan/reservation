@@ -53,17 +53,17 @@ form.addEventListener('submit', (event) => {
 });
 
 const stripeTokenHandler = (token) => {
-  const hiddenInput = document.createElement('input');
-  hiddenInput.setAttribute('type', 'hidden');
-  hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id);
-  form.appendChild(hiddenInput);
+  // const hiddenInput = document.createElement('input');
+  // hiddenInput.setAttribute('type', 'hidden');
+  // hiddenInput.setAttribute('name', 'stripeToken');
+  // hiddenInput.setAttribute('value', token.id);
+  // form.appendChild(hiddenInput);
   const amount = document.querySelector('.amount strong').textContent * 1;
+  console.log(token)
   const data = {
   	amount: amount,
   	token: token.id,
   }
-  // Submit the form
   submitPayment(data)
   	.then(res => {
   		debugger
@@ -80,3 +80,4 @@ const submitPayment = (data) => (
 		data: JSON.stringify(data),
 	})
 );
+
