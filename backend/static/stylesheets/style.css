@@ -78,7 +78,8 @@ input[type='submit'] {
   color: white; }
 
 input[type='submit']:hover {
-  background-color: gray; }
+  background-color: gray;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2); }
 
 .alert {
   padding: 5px 10px;
@@ -162,15 +163,37 @@ input[type='submit']:hover {
         color: red;
         margin-right: 7px; }
 
-.stripe {
+.payment {
   position: fixed;
-  right: 0;
+  right: -34%;
   top: 450px;
   border: 1px solid lightgray;
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-  width: 30%; }
+  width: 33%;
+  transition: all .8s; }
+
+.payment:hover {
+  right: 0; }
+  .payment:hover .sign {
+    background-color: gray;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2); }
+
+.stripe {
+  margin-bottom: 15px;
+  position: relative; }
+  .stripe .sign {
+    text-align: center;
+    border-radius: 50%;
+    padding: 7px 17px;
+    color: white;
+    background-color: black;
+    background: rgba(0, 0, 0, 0.9);
+    font-size: 36px;
+    position: absolute;
+    left: -50px;
+    top: -45px; }
   .stripe .amount {
     padding: 7px;
     margin-bottom: 15px;
@@ -192,10 +215,5 @@ input[type='submit']:hover {
     border-radius: 5px;
     border: 1px solid lightgray;
     margin: 10px 0; }
-
-.stripe-widget {
-  position: fixed;
-  right: 50px;
-  top: 650px; }
 
 /*# sourceMappingURL=style.css.map */
