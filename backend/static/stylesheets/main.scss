@@ -188,4 +188,22 @@ input[type='submit']:hover{
   }
 }
 
+.notification{
+  color: black;
+  padding: 15px;
+  position: fixed;
+  right: -100%;
+  top: 100px;
+  width: 20%;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.2);
+  trasition: all .8s;
+}
+
+.active{
+  right: 0;
+  transition: all .8s;
+}
+
 

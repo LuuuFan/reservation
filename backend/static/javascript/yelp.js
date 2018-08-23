@@ -48,6 +48,7 @@ const renderRestaurant = (businesses) => {
 			// $('.restaurant-list').append(link);
 			$('.restaurant-list').append(bizDiv);
 			$(bizDiv).on('click', (e) => {
+				$('.notification').removeClass('active');
 				if ($('.selected')) $('.selected').removeClass('selected');
 				$(e.currentTarget).addClass('selected');
 				selected = e.currentTarget.dataset.id;
@@ -119,11 +120,16 @@ $('#yelp form').submit((e) => {
 
 $('#reservation form').submit((e) => {
 	e.preventDefault();
+	$('.notification').removeClass('active');
 	// get content from yelp tried to get available time slot, failed;
 	// findTable(restaurant.alias, $('#date').val(), $('#time').val(), $('#covers').val())
-	const url = `https://www.yelp.com/reservations/${restaurant.alias}?date=${$('#date').val()}&time=${$('#time').val()}&covers=${$('#covers').val()}&source=yelp_biz`
-	const win = window.open(url, '_blank');
-	win.focus();
+	if (restaurant.alias) {
+		const url = `https://www.yelp.com/reservations/${restaurant.alias}?date=${$('#date').val()}&time=${$('#time').val()}&covers=${$('#covers').val()}&source=yelp_biz`
+		const win = window.open(url, '_blank');
+		win.focus();
+	} else {
+		$('.notification').addClass('active');
+	}
 })
 
 const findTable = (alias, date, time, covers) => {
