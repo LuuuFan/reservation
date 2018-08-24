@@ -38,10 +38,10 @@ const pay = (type, token) => {
 				}
 			}]
 		};
-		console.log(data)
-		console.log(type)
-		console.log(token)
-		console.log('~~~~~~~~~~~~~~~~')
+	console.log(data)
+	console.log(type)
+	console.log(token)
+	console.log('~~~~~~~~~~~~~~~~')
 	$.ajax({
 		url: "https://api.sandbox.paypal.com/v1/payments/payment",
 		method: "POST",

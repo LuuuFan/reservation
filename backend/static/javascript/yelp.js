@@ -1,3 +1,5 @@
+const YELP_API_KEY = '7AzKetI9iUF-ZdqNIap3z9d4VfqUYmpneo5BlqrukldMYwGIIckvirm-jTcF59M2HMH7GnVcbB8e7e9om6-OuxN2ZrIgabRNjNng6viVPS14AAZPFV0M9B20pglqWnYx';
+
 $(document).ready(() => {
 	const today = new Date().toISOString().split('T')[0];
 	const dateInput = $('#date');
@@ -17,6 +19,17 @@ const getRestaurantFromYelp = (zipcode) => {
 	}).fail((err)=>{
 		console.log(err);
 	})
+}
+
+const getRestaurantFromFront = (zipcode) => {
+	$.ajax({
+		url: `https://api.yelp.com/v3/businesses/search?term=restaurant&attributes=reservation&location=${zipcode}`,
+		header: {
+			Authorization: `Bearer ${YELP_API_KEY}`,
+		},
+	}).done(res => {
+		renderRestaurant(JSON.parse(res).businesses);
+	}).fail(err => console.log(err));
 }
 
 const renderRestaurant = (businesses) => {
